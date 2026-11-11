@@ -628,7 +628,7 @@ with tabs[7]:
     col_a, col_b = st.columns(2)
     for i, (title, evidence, rec, kind) in enumerate(cards):
         with (col_a if i % 2 == 0 else col_b):
-            st.markdown(f'<div class="insight {kind}"><b>{title}</b><br>📌 {evidence}<br>'
+            st.markdown(f'<div class="insight {kind}"><b>{title}</b><br>{evidence}<br>'
                         f'<i>{rec}</i></div>', unsafe_allow_html=True)
 
     st.markdown("#### Download cleaned data")
