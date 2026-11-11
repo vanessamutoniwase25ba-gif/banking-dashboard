@@ -102,7 +102,7 @@ def kpi(col, label, value, note="", color=TEAL):
 
 
 def insight(text, kind=""):
-    st.markdown(f'<div class="insight {kind}">💡 {text}</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="insight {kind}"> {text}</div>', unsafe_allow_html=True)
 
 
 # ------------------------------------------------------------------
@@ -113,7 +113,7 @@ def read_csvs(folder: str):
     return {name: pd.read_csv(Path(folder) / f"{name}.csv") for name in FILES}
 
 
-st.sidebar.markdown("## 🏦 Banking Analytics")
+st.sidebar.markdown("## Banking Analytics")
 
 missing = [n for n in FILES if not (DATA_FOLDER / f"{n}.csv").exists()]
 if missing:
