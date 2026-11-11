@@ -169,7 +169,7 @@ customers_all, accounts_all, transactions_all, loans_all = clean_data(raw)
 # ------------------------------------------------------------------
 # 3. SIDEBAR FILTERS
 # ------------------------------------------------------------------
-st.sidebar.markdown("### 🔎 Filters")
+st.sidebar.markdown("### Filters")
 seg_options = [s for s in SEGMENT_ORDER if s in customers_all["Segment"].unique()] + \
               sorted(set(customers_all["Segment"].dropna()) - set(SEGMENT_ORDER))
 sel_seg = st.sidebar.multiselect("Segment", seg_options, default=seg_options)
@@ -211,7 +211,7 @@ digital_share = transactions["Digital"].mean() * 100 if len(transactions) else 0
 
 # Header
 st.markdown(f"""<div class="hero">
-    <h1>🏦 Banking Customer & Business Analytics</h1>
+    <h1>Banking Customer & Business Analytics</h1>
     <p>Customers · Deposits · Transactions · Loans · Segment performance &nbsp;|&nbsp;
     {len(customers):,} customers · {len(transactions):,} transactions · {len(loans):,} loans</p>
 </div>""", unsafe_allow_html=True)
@@ -415,7 +415,7 @@ with tabs[3]:
             show_table(tbl.sort_values("Total", ascending=False).style.format(
                 {"Total": "{:,.0f}", "Average": "{:,.0f}"}))
 
-    st.markdown("**🏆 Top 10 customers by total balance**")
+    st.markdown("**Top 10 customers by total balance**")
     top10 = (accounts.groupby(["Customer_ID", "Segment", "Region"])["Balance"].sum()
              .sort_values(ascending=False).head(10).reset_index())
     fig = px.bar(top10, x="Balance", y="Customer_ID", orientation="h", color="Segment",
@@ -580,7 +580,7 @@ with tabs[6]:
                       polar=dict(radialaxis=dict(range=[0, 100])), height=520)
     show_chart(fig)
 
-    st.download_button("⬇️ Download segment summary (CSV)", summary.round(1).to_csv().encode("utf-8"),
+    st.download_button("Download segment summary (CSV)", summary.round(1).to_csv().encode("utf-8"),
                        "Segment_Summary.csv", "text/csv")
 
 
@@ -629,11 +629,11 @@ with tabs[7]:
     for i, (title, evidence, rec, kind) in enumerate(cards):
         with (col_a if i % 2 == 0 else col_b):
             st.markdown(f'<div class="insight {kind}"><b>{title}</b><br>📌 {evidence}<br>'
-                        f'✅ <i>{rec}</i></div>', unsafe_allow_html=True)
+                        f'<i>{rec}</i></div>', unsafe_allow_html=True)
 
     st.markdown("#### Download cleaned data")
     c = st.columns(4)
     for col, (name, df) in zip(c, [("Customers", customers), ("Accounts", accounts),
                                    ("Transactions", transactions), ("Loans", loans)]):
-        col.download_button(f"⬇️ {name}", df.to_csv(index=False).encode("utf-8"),
+        col.download_button(f"{name}", df.to_csv(index=False).encode("utf-8"),
                             f"Clean_{name}.csv", "text/csv", key=f"dl_{name}")
