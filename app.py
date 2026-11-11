@@ -32,7 +32,7 @@ REFERENCE_DATE = pd.Timestamp("2026-11-10")   # "today", used for customer tenur
 DIGITAL_CHANNELS = ["Mobile", "Internet"]
 # Folder with the 5 CSV files. Default = a "Data" folder next to app.py.
 # You can also write your own path, e.g. Path(r"C:\\Users\\You\\Desktop\\Data")
-DATA_FOLDER = Path(r"C:\Users\Vanes\Desktop\Kepler College\Year 2\Year 2 Term 3\Industrial Attachement I\Business_Analytics_Intern_Banking_Assessment\Business_Analytics_Intern_Banking_Assessment\Data")
+DATA_FOLDER = Path(__file__).parent / "Data"
 FILES = ["Branches", "Customers", "Accounts", "Transactions", "Loans"]
 
 st.markdown(f"""
